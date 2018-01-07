@@ -41,7 +41,12 @@ pthreads_dep = dependency('threads')
 rt_dep = cc.find_library('rt')
 crypt_dep = cc.find_library('crypt')
 
-library('wiringpi', pi_srcs,
+wiringpi_lib = library('wiringpi', pi_srcs,
 	dependencies: [m_dep, pthreads_dep, rt_dep, crypt_dep],
 	c_args: ['-D_GNU_SOURCE'],
+	include_directories: include_directories(['.']))
+
+wiringpi_dep = declare_dependency(
+	link_with: wiringpi_lib,
+	dependencies: [m_dep, pthreads_dep, rt_dep, crypt_dep],
 	include_directories: include_directories(['.']))
