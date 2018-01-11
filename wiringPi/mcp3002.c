@@ -40,9 +40,9 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
   int chan = pin - node->pinBase ;
 
   if (chan == 0)
-    chanBits = 0b11010000 ;
+    chanBits = (__extension__ 0b11010000);
   else
-    chanBits = 0b11110000 ;
+    chanBits = (__extension__ 0b11110000);
 
   spiData [0] = chanBits ;
   spiData [1] = 0 ;

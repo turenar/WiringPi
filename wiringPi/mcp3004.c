@@ -41,7 +41,7 @@ static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
   unsigned char chanBits ;
   int chan = pin - node->pinBase ;
 
-  chanBits = 0b10000000 | (chan << 4) ;
+  chanBits = (__extension__ 0b10000000) | (chan << 4) ;
 
   spiData [0] = 1 ;		// Start bit
   spiData [1] = chanBits ;

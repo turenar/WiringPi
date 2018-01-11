@@ -40,9 +40,9 @@ static void myAnalogWrite (struct wiringPiNodeStruct *node, int pin, int value)
   int chan = pin - node->pinBase ;
 
   if (chan == 0)
-    chanBits = 0b01000000 ;
+    chanBits = (__extension__ 0b01000000);
   else
-    chanBits = 0b01010000 ;
+    chanBits = (__extension__ 0b01010000);
 
   chanBits |= ((value >> 12) & 0x0F) ;
   dataBits  = ((value      ) & 0xFF) ;
@@ -75,7 +75,7 @@ int max5322Setup (const int pinBase, int spiChannel)
 
 // Enable both DACs
 
-  spiData [0] = 0b11100000 ;
+  spiData [0] = (__extension__ 0b11100000);
   spiData [1] = 0 ;
   
   wiringPiSPIDataRW (node->fd, spiData, 2) ;
